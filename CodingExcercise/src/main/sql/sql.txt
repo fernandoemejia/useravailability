@@ -1,0 +1,44 @@
+create database bairesdev;
+
+
+create table bairesdev.PRODUCTO (
+   id BIGINT NOT NULL AUTO_INCREMENT,   
+   descripcion VARCHAR(30) NOT NULL,
+      PRIMARY KEY (id)   
+);
+
+
+create table bairesdev.CATEGORIA(
+   id BIGINT NOT NULL AUTO_INCREMENT,
+   type VARCHAR(30) NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE (type)
+);
+
+
+  
+create table bairesdev.PRODUCTO_CATEGORIA (
+    producto_id BIGINT NOT NULL,
+    categoria_id BIGINT NOT NULL,
+    PRIMARY KEY (producto_id, categoria_id),
+    CONSTRAINT FK_PRODUCTO FOREIGN KEY (producto_id) REFERENCES bairesdev.PRODUCTO (id),
+    CONSTRAINT FK_CATEGORIA FOREIGN KEY (categoria_id) REFERENCES bairesdev.CATEGORIA (id)
+);
+
+
+
+/* Populate CATEGORIA Table */
+INSERT INTO bairesdev.CATEGORIA(type)
+VALUES ('FOOD');
+  
+INSERT INTO bairesdev.CATEGORIA(type)
+VALUES ('LIQUOR');
+  
+INSERT INTO bairesdev.CATEGORIA(type)
+VALUES ('DRINKS');
+ 
+commit;
+
+
+select * from bairesdev.CATEGORIA;
+
